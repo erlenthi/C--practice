@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Security.Cryptography;
 
 // Console.WriteLine("Hello World!");
 
@@ -116,3 +117,70 @@ Console.WriteLine($"Divide value2 by value3, display the result as a decimal: {r
 
 // Your code here to set result3
 Console.WriteLine($"Divide value3 by value1, display the result as a float: {result3}");
+
+string pangram = "The quick brown fox jumps over the lazy dog";
+
+string[] pangramList = pangram.Split(' '); 
+
+for(int i = 0; i < pangramList.Length; i++)
+{
+   char[]charArray = pangramList[i].ToCharArray();
+   Array.Reverse(charArray);
+   pangramList[i] = String.Join("", charArray);
+}
+    
+
+Console.WriteLine(String.Join(" ", pangramList));
+
+string customerName = "Ms. Barros";
+
+string currentProduct = "Magic Yield";
+int currentShares = 2975000;
+decimal currentReturn = 0.1275m;
+decimal currentProfit = 55000000.0m;
+
+string newProduct = "Glorious Future";
+decimal newReturn = 0.13125m;
+decimal newProfit = 63000000.0m;
+
+// Your logic here
+
+Console.WriteLine("Here's a quick comparison:\n");
+
+string comparisonMessage = $"Our new product, {newProduct} offers a return of {newReturn:P2}. Given your current volume, your potential profit would be {newProfit:C}";
+comparisonMessage = currentProduct.PadRight(20);
+comparisonMessage += String.Format($"{currentReturn:P}");
+comparisonMessage += String.Format("{0:C}", currentProfit);
+
+comparisonMessage += "\n";
+comparisonMessage += newProduct.PadRight(20);
+comparisonMessage += String.Format("{0:P}", newReturn);
+comparisonMessage += String.Format("{0:C}", newProfit);
+// Your logic here
+
+Console.WriteLine(comparisonMessage);
+
+string s = "hello";
+char c = s[1];
+
+var vowels = s.Where(c => "aeiou".Contains(c));
+
+foreach (var v in vowels)
+{
+    Console.WriteLine(v);
+} 
+
+const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+string quantity = "";
+string output = "";
+
+// Your work here
+
+var quantityIndex = input.IndexOfAny(['1','2','3','4','5','6','7','8','9','0']);
+var quantityLastIndex = input.LastIndexOfAny(['1','2','3','4','5','6','7','8','9','0']);
+
+quantity = input.Substring(quantityIndex, quantityLastIndex - quantityIndex);
+
+Console.WriteLine(quantity);
+Console.WriteLine(output);
