@@ -62,7 +62,7 @@ if (useTestData)
 while (transactions > 0)
 {
     transactions -= 1;
-    int itemCost = valueGenerator.Next(10, 40);
+    int itemCost = valueGenerator.Next(2, 50);
 
     if (useTestData)
     {
@@ -82,13 +82,17 @@ while (transactions > 0)
     Console.WriteLine($"\t Using {paymentFives} five dollar bills");
     Console.WriteLine($"\t Using {paymentOnes} one dollar bills");
 
+    
+    int[] working = (int[])cashTill.Clone();
     try
     {
         // MakeChange manages the transaction and updates the till 
-        MakeChange(itemCost, cashTill, paymentTwenties, paymentTens, paymentFives, paymentOnes);
+        MakeChangeDefault(itemCost, working, paymentTwenties, paymentTens, paymentFives, paymentOnes);
 
         // Backup Calculation - each transaction adds current "itemCost" to the till
         registerCheckTillTotal += itemCost;
+        Array.Copy(working, cashTill, cashTill.Length);
+
     }
     catch (InvalidOperationException e)
     {
@@ -97,7 +101,7 @@ while (transactions > 0)
     watchTillAmountSummary = TillAmountSummary(cashTill);
     Console.WriteLine(TillAmountSummary(cashTill));
     Console.WriteLine($"Expected till value: {registerCheckTillTotal}");
-        Debug.Assert((cashTill[3] * 20 + cashTill[2] * 10 + cashTill[1] * 5 + cashTill[0]) == registerCheckTillTotal);
+    Debug.Assert((cashTill[3] * 20 + cashTill[2] * 10 + cashTill[1] * 5 + cashTill[0]) == registerCheckTillTotal);
     Console.WriteLine();
 }
 
@@ -118,7 +122,7 @@ static void LoadTillEachMorning(int[,] registerDailyStartingCash, int[] cashTill
 }
 
 
-static void MakeChange(int cost, int[] cashTill, int twenties, int tens = 0, int fives = 0, int ones = 0)
+static void MakeChangeDefault(int cost, int[] cashTill, int twenties, int tens = 0, int fives = 0, int ones = 0)
 {
     cashTill[3] += twenties;
     cashTill[2] += tens;
@@ -166,6 +170,143 @@ static void MakeChange(int cost, int[] cashTill, int twenties, int tens = 0, int
 
 }
 
+//My Solution (With Rollback):
+static void MakeChange(int cost, int[] cashTill, int twenties, int tens = 0, int fives = 0, int ones = 0)
+{
+
+
+    void changeMoney(int twenties, int tens = 0, int fives = 0, int ones = 0)
+    {
+        cashTill[3] += twenties;
+        cashTill[2] += tens;
+        cashTill[1] += fives;
+        cashTill[0] += ones;
+    }
+
+    changeMoney(twenties, tens, fives, ones);
+
+    int amountPaid = twenties * 20 + tens * 10 + fives * 5 + ones;
+    int changeNeeded = amountPaid - cost;
+
+
+
+    if (changeNeeded < 0)
+    {
+        changeMoney(-twenties, -tens, -fives, -ones);
+        throw new InvalidOperationException("InvalidOperationException: Not enough money provided to complete the transaction.");
+    }
+    Console.WriteLine("Cashier prepares the following change:");
+
+    int[] changesDone = [0, 0, 0, 0];
+
+    while ((changeNeeded > 19) && (cashTill[3] > 0))
+    {
+        cashTill[3]--;
+        changeNeeded -= 20;
+        changesDone[3]++;
+        Console.WriteLine("\t A twenty");
+    }
+
+    while ((changeNeeded > 9) && (cashTill[2] > 0))
+    {
+        cashTill[2]--;
+        changeNeeded -= 10;
+        changesDone[2]++;
+        Console.WriteLine("\t A ten");
+    }
+
+    while ((changeNeeded > 4) && (cashTill[1] > 0))
+    {
+        cashTill[1]--;
+        changeNeeded -= 5;
+        changesDone[1]++;
+        Console.WriteLine("\t A five");
+    }
+
+    while ((changeNeeded > 0) && (cashTill[0] > 0))
+    {
+        cashTill[0]--;
+        changeNeeded -= 1;
+        changesDone[0]++;
+        Console.WriteLine("\t A one");
+    }
+
+
+    if (changeNeeded > 0)
+    {
+        int increment = 0;
+        while (increment < 4)
+        {
+            //Taking back the change given
+            cashTill[increment] += changesDone[increment];
+            increment++;
+
+        }
+        //Giving back the money taken 
+        changeMoney(-twenties,-tens,-fives,-ones);
+
+        throw new InvalidOperationException("InvalidOperationException: The till is unable to make change for the cash provided.");
+    }
+
+    //Commits changes
+    //cashTill = (int[])cashTill.Clone();
+
+}
+
+//ChatGPT Solution
+static void MakeChangeAI(int cost, int[] cashTill, int twenties, int tens, int fives, int ones)
+{
+    int[] working = (int[])cashTill.Clone();
+
+    // Apply payment
+    working[3] += twenties;
+    working[2] += tens;
+    working[1] += fives;
+    working[0] += ones;
+
+    int amountPaid = twenties * 20 + tens * 10 + fives * 5 + ones;
+    int changeNeeded = amountPaid - cost;
+
+    if (changeNeeded < 0)
+        throw new InvalidOperationException("Not enough money");
+
+     while ((changeNeeded > 19) && (working[3] > 0))
+    {
+        working[3]--;
+        changeNeeded -= 20;
+        Console.WriteLine("\t A twenty");
+    }
+
+    while ((changeNeeded > 9) && (working[2] > 0))
+    {
+        working[2]--;
+        changeNeeded -= 10;
+        Console.WriteLine("\t A ten");
+    }
+
+    while ((changeNeeded > 4) && (working[1] > 0))
+    {
+        working[1]--;
+        changeNeeded -= 5;
+        Console.WriteLine("\t A five");
+    }
+
+    while ((changeNeeded > 0) && (working[0] > 0))
+    {
+        working[0]--;
+        changeNeeded -= 1;
+        Console.WriteLine("\t A one");
+    }
+
+    if (changeNeeded > 0)
+        throw new InvalidOperationException("Cannot make change");
+
+    // ✅ Commit only if everything worked
+    Array.Copy(working, cashTill, cashTill.Length);
+}
+
+
+
 static void LogTillStatus(int[] cashTill)
 {
     Console.WriteLine("The till currently has:");
@@ -181,3 +322,5 @@ static string TillAmountSummary(int[] cashTill)
     return $"The till has {cashTill[3] * 20 + cashTill[2] * 10 + cashTill[1] * 5 + cashTill[0]} dollars";
 
 }
+
+
