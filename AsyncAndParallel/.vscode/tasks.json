@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build AsyncProject",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/AsyncProject/AsyncProject.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        }
+        
+        // },
+        // {
+        //     "label": "build FileManagementSystem2",
+        //     "command": "dotnet",
+        //     "type": "process",
+        //     "args": [
+        //         "build",
+        //         "${workspaceFolder}/FileManagementSystem2/FileManagementSystem2.csproj",
+        //         "/property:GenerateFullPaths=true",
+        //         "/consoleloggerparameters:NoSummary"
+        //     ],
+        //     "problemMatcher": "$msCompile",
+        //     "group": {
+        //         "kind": "build",
+        //         "isDefault": true
+        //     }
+        // }
+    ]
+}

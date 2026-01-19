@@ -1,0 +1,15 @@
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\bin\Debug\net10.0\AsyncProject.exe
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\bin\Debug\net10.0\AsyncProject.deps.json
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\bin\Debug\net10.0\AsyncProject.runtimeconfig.json
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\bin\Debug\net10.0\AsyncProject.dll
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\bin\Debug\net10.0\AsyncProject.pdb
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\AsyncProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\AsyncProject.AssemblyInfoInputs.cache
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\AsyncProject.AssemblyInfo.cs
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\AsyncProject.csproj.CoreCompileInputs.cache
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\AsyncProject.sourcelink.json
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\AsyncProject.dll
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\refint\AsyncProject.dll
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\AsyncProject.pdb
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\AsyncProject.genruntimeconfig.cache
+C:\Users\erlen\C#-practice\AsyncAndParallel\AsyncProject\obj\Debug\net10.0\ref\AsyncProject.dll

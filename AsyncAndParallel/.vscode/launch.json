@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "name": "Launch AsyncProject",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build AsyncProject",
+            "program": "${workspaceFolder}/AsyncProject/bin/Debug/net10.0/AsyncProject.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/AsyncProject",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        }
+        
+        //,
+        // {
+        //     "name": "Launch AsyncProject2",
+        //     "type": "coreclr",
+        //     "request": "launch",
+        //     "preLaunchTask": "build AsyncProject2",
+        //     "program": "${workspaceFolder}/AsyncProject2/bin/Debug/net10.0/AsyncProject2.dll",
+        //     "args": [],
+        //     "cwd": "${workspaceFolder}/AsyncProject2",
+        //     "console": "internalConsole",
+        //     "stopAtEntry": false
+        // }
+    ]
+}
