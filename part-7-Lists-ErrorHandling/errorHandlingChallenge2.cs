@@ -303,6 +303,7 @@ static void MakeChangeAI(int cost, int[] cashTill, int twenties, int tens, int f
 
     // ✅ Commit only if everything worked
     Array.Copy(working, cashTill, cashTill.Length);
+    Array.
 }
 
 

@@ -8,10 +8,15 @@ IEnumerable<string> listOfDirectories = Directory.EnumerateDirectories("./");
 
 foreach (var dir in listOfDirectories)
 {
-    Console.WriteLine("directory: ", dir);
+    Console.WriteLine("directory: " + dir);
 }
 
 
+Console.WriteLine("\nFolders in workspace:");
+foreach (var folder in listOfDirectories)
+{
+    Console.WriteLine(folder);
+}
 
 List<string> salesFiles = new List<string>();
 // Find all *.txt files in the stores folder and its subfolders
@@ -44,6 +49,10 @@ foreach (var file in allFilesInAllFolders)
         }
 
     }
+
+}
+
+
     // Display compressed files and handle decompression
     IEnumerable<string> compressedFiles = Directory.EnumerateFiles("./", "*.gz", SearchOption.AllDirectories);
     List<string> gzipFiles = compressedFiles.ToList();
@@ -101,7 +110,5 @@ foreach (var file in allFilesInAllFolders)
         {
             Console.WriteLine($"Error during decompression: {ex.Message}");
         }
-    }
-
 }
 

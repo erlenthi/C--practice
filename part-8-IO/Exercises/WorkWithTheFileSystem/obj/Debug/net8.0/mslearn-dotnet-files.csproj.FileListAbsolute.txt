@@ -1,0 +1,5 @@
+C:\Users\erlen\C#-practice\part-8-IO\Exercises\WorkWithTheFileSystem\obj\Debug\net8.0\mslearn-dotnet-files.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erlen\C#-practice\part-8-IO\Exercises\WorkWithTheFileSystem\obj\Debug\net8.0\mslearn-dotnet-files.AssemblyInfoInputs.cache
+C:\Users\erlen\C#-practice\part-8-IO\Exercises\WorkWithTheFileSystem\obj\Debug\net8.0\mslearn-dotnet-files.AssemblyInfo.cs
+C:\Users\erlen\C#-practice\part-8-IO\Exercises\WorkWithTheFileSystem\obj\Debug\net8.0\mslearn-dotnet-files.csproj.CoreCompileInputs.cache
+C:\Users\erlen\C#-practice\part-8-IO\Exercises\WorkWithTheFileSystem\obj\Debug\net8.0\mslearn-dotnet-files.sourcelink.json

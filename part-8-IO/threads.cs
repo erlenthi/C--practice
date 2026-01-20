@@ -8,8 +8,8 @@ class Program
 
     static void Main()
     {
-        File.Delete("test.txt"); 
-        File.("test.txt");
+        //File.Delete("test.txt"); 
+    
         Thread thread1 = new Thread(() => WriteToFile("Thread 1"));
         Thread thread2 = new Thread(() => WriteToFile("Thread 2"));
 
